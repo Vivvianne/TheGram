@@ -11,7 +11,7 @@ posts = [
     {
         'author': 'Jane Doe',
         'title': 'Blog Post 2',
-        'content': 'Second post content',
+        'description': 'Second post content',
         'date_posted': 'August 28, 2018'
     }
 ]
