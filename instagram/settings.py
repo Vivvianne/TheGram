@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'thegram.apps.ThegramConfig'
+    'thegram.apps.ThegramConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
