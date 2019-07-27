@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from PIL import Image
 
 class Post(models.Model):
     image = models.ImageField(upload_to = "images/",null = True)
@@ -12,3 +13,14 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
+    
+    def save(self):
+        super().save()
+        
+        img = Image.open(self.image.path)
+            
+        if img.height > 400 or img.width > 400:
+            output_size =(400, 400)
+            img.thumbnail(output_size)
+            image.save(self.image.path)
+        

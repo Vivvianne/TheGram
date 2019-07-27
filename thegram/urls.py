@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', PostListView.as_view(), name='thegram-home'),
+    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('about/', views.about, name='thegram-about'),
 ]

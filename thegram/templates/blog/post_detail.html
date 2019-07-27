@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+    <div class="media-body">
+        <div class="article-metadata">
+            <!--Display news Article images  -->
+            <a class="mr-2" href="#">{{ object.author }}</a>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <img src="{{object.image.url}}" class="img-responsive" alt="Image">
+            </div>
+            <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+        </div>
+        <p class="article-content">{{ object.description }}</p>
+    </div>
+</article>
+{% endblock  %}
