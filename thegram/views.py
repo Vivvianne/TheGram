@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from django.http import HttpResponse
 from .models import Post
 
@@ -8,6 +9,16 @@ def home(request):
         'posts': Post.objects.all
     }
     return render(request, 'blog/home.html', context)
+
+class PostListView(ListView):
+    model = Post
+   
+    
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/home.html'
+    context_object_name ='post'
+    ordering =['-date_posted']
 
 
 def about(request):
