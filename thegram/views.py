@@ -38,7 +38,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['image', 'description']
+    template_name = 'blog/post_form.html'
     
     def form_valid(self, form):
         form.instance.author = self.request.user
