@@ -26,7 +26,8 @@ class PostDetailView(DetailView):
     
 class PostCreateView(CreateView):
     model = Post
-    fields = ['image', 'content']
+    fields = ['image', 'description']
+    template_name = 'blog/post_form.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
