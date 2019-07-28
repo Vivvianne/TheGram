@@ -47,6 +47,17 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     
     def test_func(self):
         post = self.get_object()
+        if self.request.user == post.image:
+            return True
+        return False
+    
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = '/'
+    template_name = 'blog/post_form.html'
+    
+    def test_func(self):
+        post = self.get_object()
         if self.request.user == post.author:
             return True
         return False
