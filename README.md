@@ -66,5 +66,10 @@ Postgres Database
 HTML & CSS
 Heroku
 
+## Known bugs
+One cannot be able to add a comment
+One cannot be able to like or follow a user
+
+
 ## Licence
 [MIT]  https://github.com/Vivvianne/TheGram/blob/master/LICENSE
