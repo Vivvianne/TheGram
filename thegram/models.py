@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from PIL import Image
+from django.urls import reverse
 
 class Post(models.Model):
     image = models.ImageField(upload_to = "images/",null = True)
@@ -12,6 +13,9 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('post-detail', kwargs={'pk': self.pk})
     
     
     def save(self):

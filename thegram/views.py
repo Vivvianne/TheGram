@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -24,13 +25,13 @@ class PostDetailView(DetailView):
     template_name = 'blog/post_detail.html'  
     context_object_name = 'posts'
     
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['image', 'description']
     template_name = 'blog/post_form.html'
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.description = self.request.user
         return super().form_valid(form)
 
 
