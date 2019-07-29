@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .forms import PostCreateForm
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -7,6 +8,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
+
 from .models import Post
 
 
@@ -27,14 +29,29 @@ class PostDetailView(DetailView):
     template_name = 'blog/post_detail.html'  
     context_object_name = 'posts'
     
-class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
-    fields = ['image', 'description']
-    template_name = 'blog/post_form.html'
+# class PostCreateView(LoginRequiredMixin, CreateView):
+#     model = Post
+#     fields = ['image', 'description']
+#     template_name = 'blog/post_form.html'
 
-    def form_valid(self, form):
-        form.instance.description = self.request.user
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         form.instance.description = self.request.user
+#         super().form_valid(form)
+#         return form.save()
+    
+def post_save(request):
+    if request.method =='POST':
+    # u_form = UserUpdateForm(request.POST, instance=request.user)
+        a_form = PostCreateForm(request.POST, request.FILES)
+        if a_form.is_valid():
+            image = a_form.save(commit=False)
+            image.author = request.user
+            # u_form.save()
+            image.save()
+            return redirect('thegram-home')
+    else:
+        a_form = PostCreateForm()
+    return render(request,'blog/post_form.html',{'form':a_form})
     
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post

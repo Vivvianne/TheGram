@@ -13,6 +13,9 @@ class Post(models.Model):
     # likes = models.ForeignKey(User, on_delete=models.CASCADE)
     # comments = models.ForeignKey(User, on_delete=models.CASCADE)
     
+    def save_image(self):
+        self.save()
+    
     @classmethod
     def search_by_description(cls,search_term):
         news = cls.objects.filter(description__icontains=search_term)
@@ -23,7 +26,6 @@ class Post(models.Model):
     
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
-    
     
     def save(self):
         super().save()
