@@ -42,7 +42,7 @@ As a user of the application i should be able to:
 
 ## Live site 
 
-One can view the live site here 
+One can view the live site here https://vivthegram.herokuapp.com/
 
 
 ## BDD
@@ -72,4 +72,4 @@ One cannot be able to like or follow a user
 
 
 ## Licence
-[MIT]  https://github.com/Vivvianne/TheGram/blob/master/LICENSE
+[MIT](https://github.com/Vivvianne/TheGram/blob/master/LICENSE)
