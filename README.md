@@ -42,7 +42,7 @@ As a user of the application i should be able to:
 
 ## Live site 
 
-One can view the live site here 
+One can view the live site here https://vivthegram.herokuapp.com/
 
 
 ## BDD
