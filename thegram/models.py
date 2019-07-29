@@ -17,8 +17,8 @@ class Post(models.Model):
         self.save()
     
     @classmethod
-    def search_by_description(cls,search_term):
-        news = cls.objects.filter(description__icontains=search_term)
+    def search_by_title(cls,search_term):
+        news = cls.objects.filter(title__icontains=search_term)
         return news
     
     def __str__(self):
