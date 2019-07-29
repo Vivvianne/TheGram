@@ -13,6 +13,11 @@ class Post(models.Model):
     # likes = models.ForeignKey(User, on_delete=models.CASCADE)
     # comments = models.ForeignKey(User, on_delete=models.CASCADE)
     
+    @classmethod
+    def search_by_description(cls,search_term):
+        news = cls.objects.filter(description__icontains=search_term)
+        return news
+    
     def __str__(self):
         return self.title
     

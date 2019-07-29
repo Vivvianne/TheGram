@@ -62,6 +62,14 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+def search_results(request):
+    
+    if 'post' in request.GET and request.GET["post"]:
+        search_term = request.GET.get("post")
+        searched_posts = Post.search_by_description(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'blog/search.html',{"message":message,"post": searched_posts})
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
